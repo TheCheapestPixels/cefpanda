@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="style.css">
+
+    <script>
+      function call_python_function() {
+	  call_py();
+      }
+
+      function color_text_red() {
+	  document.getElementById("colorable_text").style.color = "red";
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Hello World</h1>
+    <p id="colorable_text" onclick="call_python_function()">
+      Click me to call a Python function that calls a JavaScript
+      function that colors this paragraph red.
+    </p>
+  </body>
+</html>
