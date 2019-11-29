@@ -8,11 +8,11 @@
 
     <script>
       function call_python_function() {
-	  call_py();
+	  call_py("red");
       }
 
-      function color_text_red() {
-	  document.getElementById("colorable_text").style.color = "red";
+      function color_text_red(color) {
+	  document.getElementById("colorable_text").style.color = color;
       }
     </script>
   </head>
