@@ -11,7 +11,11 @@ class App(ShowBase):
         self.accept('escape', sys.exit)
 
         # Setup ui
-        self.ui = cefpanda.CEFPanda()
+        self.ui = cefpanda.CEFPanda(
+            transparent=False,
+            size=[-0.9, 0.9, -0.9, 0.9],
+            #parent=base.aspect2d,
+        )
         self.ui.set_js_function('call_py', self.handler_js_to_py)
         self.ui.load_file('ui/main.html')
 

@@ -82,7 +82,7 @@ class CefClientHandler:
 class CEFPanda(DirectObject):
     _UI_SCALE = 1.0
 
-    def __init__(self):
+    def __init__(self, transparent=True, size=None, parent=None):
         super().__init__()
         cef_mod_dir = cefpython.GetModuleDirectory()
         app_settings = {
@@ -108,11 +108,18 @@ class CEFPanda(DirectObject):
         self._cef_texture.set_format(p3d.Texture.FRgba4)
 
         card_maker = p3d.CardMaker("browser2d")
-        card_maker.set_frame(-self._UI_SCALE, self._UI_SCALE, -self._UI_SCALE, self._UI_SCALE)
+        if size is None:
+            card_maker.set_frame(-self._UI_SCALE, self._UI_SCALE, -self._UI_SCALE, self._UI_SCALE)
+        else:
+            card_maker.set_frame(*size)
         node = card_maker.generate()
-        self._cef_node = base.render2d.attachNewNode(node)
+        if parent is None:
+            self._cef_node = base.render2d.attachNewNode(node)
+        else:
+            self._cef_node = parent.attachNewNode(node)
         self._cef_node.set_texture(self._cef_texture)
-        self._cef_node.set_transparency(p3d.TransparencyAttrib.MAlpha)
+        if transparent:
+            self._cef_node.set_transparency(p3d.TransparencyAttrib.MAlpha)
 
         winhnd = base.win.getWindowHandle().getIntHandle()
         wininfo = cefpython.WindowInfo()
