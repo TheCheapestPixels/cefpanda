@@ -21,5 +21,5 @@ class App(ShowBase):
 
 
 if __name__ == '__main__':
-    app = App()
-    app.run()
+    APP = App()
+    APP.run()
