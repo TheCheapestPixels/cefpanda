@@ -13,7 +13,7 @@ class App(ShowBase):
         # Setup ui
         self.ui = cefpanda.CEFPanda(
             transparent=False,
-            #size=[-0.5, 0.5, -0.9, 0.9],
+            size=[-0.75, 0.75, -0.75, 0.75],
             #parent=base.aspect2d,
         )
         self.ui.node().set_scale(0.9)

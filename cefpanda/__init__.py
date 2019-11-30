@@ -109,8 +109,14 @@ class CEFPanda(DirectObject):
 
         card_maker = p3d.CardMaker("browser2d")
         if size is None:
-            card_maker.set_frame(-self._UI_SCALE, self._UI_SCALE, -self._UI_SCALE, self._UI_SCALE)
-            self._size = [-self._UI_SCALE, self._UI_SCALE, -self._UI_SCALE, self._UI_SCALE]
+            ui_scale = [
+                -self._UI_SCALE,
+                self._UI_SCALE,
+                -self._UI_SCALE,
+                self._UI_SCALE,
+            ]
+            card_maker.set_frame(*ui_scale)
+            self._size = ui_scale
         else:
             card_maker.set_frame(*size)
             self._size = size
@@ -235,8 +241,9 @@ class CEFPanda(DirectObject):
             self._shutdown_cef()
             return
 
-        width = int(round(window.get_x_size() * self._UI_SCALE))
-        height = int(round(window.get_y_size() * self._UI_SCALE))
+        left, right, down, up = self._size
+        width = int(round(window.get_x_size() * (right - left) / 2.0))
+        height = int(round(window.get_y_size() * (up - down) / 2.0))
 
         # We only want to resize if the window size actually changed.
         if self._cef_texture.get_x_size() != width or self._cef_texture.get_y_size() != height:
