@@ -303,6 +303,10 @@ class CEFPanda(DirectObject):
             return
 
         posx, posy = self._get_mouse_pos()
+        x_in_bounds = 0 <= posx <= self._cef_texture.get_x_size()
+        y_in_bounds = 0 <= posy <= self._cef_texture.get_y_size()
+        if not all([x_in_bounds, y_in_bounds]):
+            return
 
         self.browser.SendMouseClickEvent(
             posx,
