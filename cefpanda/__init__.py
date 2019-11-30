@@ -164,6 +164,9 @@ class CEFPanda(DirectObject):
 
         self.use_mouse = True
 
+    def node(self):
+        return self._cef_node
+
     def _shutdown_cef(self):
         self.browser.CloseBrowser()
         cefpython.Shutdown()
