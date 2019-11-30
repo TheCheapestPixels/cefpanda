@@ -110,8 +110,10 @@ class CEFPanda(DirectObject):
         card_maker = p3d.CardMaker("browser2d")
         if size is None:
             card_maker.set_frame(-self._UI_SCALE, self._UI_SCALE, -self._UI_SCALE, self._UI_SCALE)
+            self._size = [-self._UI_SCALE, self._UI_SCALE, -self._UI_SCALE, self._UI_SCALE]
         else:
             card_maker.set_frame(*size)
+            self._size = size
         node = card_maker.generate()
         if parent is None:
             self._cef_node = base.render2d.attachNewNode(node)
@@ -292,8 +294,9 @@ class CEFPanda(DirectObject):
             base.render2d,
             p3d.Vec3(mouse.get_x(), 0, mouse.get_y()),
         )
-        posx = (pos.x + 1.0) / 2.0 * self._cef_texture.get_x_size()
-        posy = (pos.z + 1.0) / 2.0 * self._cef_texture.get_y_size()
+        left, right, down, up = self._size
+        posx = (pos.x - left) / (right - left) * self._cef_texture.get_x_size()
+        posy = (pos.z - down) / (up - down) * self._cef_texture.get_y_size()
         posy = self._cef_texture.get_y_size() - posy
 
         return posx, posy

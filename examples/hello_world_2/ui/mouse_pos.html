@@ -8,8 +8,8 @@
     <script>
       var dimension = [document.documentElement.clientWidth, document.documentElement.clientHeight];
       var canvas = document.getElementById("myCanvas");
-      canvas.width = dimension[0];
-      canvas.height = dimension[1];
+      canvas.width = dimension[0] - 8;
+      canvas.height = dimension[1] - 20;
       var context = canvas.getContext("2d");
       document.addEventListener("click", function(){
 	  context.fillStyle = "#FF0000";
