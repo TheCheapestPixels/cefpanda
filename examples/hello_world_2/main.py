@@ -21,7 +21,7 @@ class App(ShowBase):
 
     def handler_js_to_py(self, color):
         print("Python handler called with '{}'".format(color))
-        self.ui.exec_js_func('color_text_red', color)    
+        self.ui.exec_js_func('color_text_red', color)
 
 
 if __name__ == '__main__':
