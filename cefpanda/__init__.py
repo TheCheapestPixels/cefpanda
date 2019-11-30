@@ -285,8 +285,12 @@ class CEFPanda(DirectObject):
 
     def _get_mouse_pos(self):
         mouse = base.mouseWatcherNode.getMouse()
-        posx = (mouse.get_x() + 1.0) / 2.0 * self._cef_texture.get_x_size()
-        posy = (mouse.get_y() + 1.0) / 2.0 * self._cef_texture.get_y_size()
+        pos = self._cef_node.get_relative_point(
+            base.render2d,
+            p3d.Vec3(mouse.get_x(), 0, mouse.get_y()),
+        )
+        posx = (pos.x + 1.0) / 2.0 * self._cef_texture.get_x_size()
+        posy = (pos.z + 1.0) / 2.0 * self._cef_texture.get_y_size()
         posy = self._cef_texture.get_y_size() - posy
 
         return posx, posy
