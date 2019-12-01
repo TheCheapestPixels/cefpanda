@@ -80,8 +80,6 @@ class CefClientHandler:
 
 
 class CEFPanda(DirectObject):
-    _UI_SCALE = 1.0
-
     def __init__(self, transparent=True, size=None, parent=None):
         super().__init__()
         cef_mod_dir = cefpython.GetModuleDirectory()
@@ -109,17 +107,9 @@ class CEFPanda(DirectObject):
 
         card_maker = p3d.CardMaker("browser2d")
         if size is None:
-            ui_scale = [
-                -self._UI_SCALE,
-                self._UI_SCALE,
-                -self._UI_SCALE,
-                self._UI_SCALE,
-            ]
-            card_maker.set_frame(*ui_scale)
-            self._size = ui_scale
-        else:
-            card_maker.set_frame(*size)
-            self._size = size
+            size = [-1, 1, -1, 1]
+        card_maker.set_frame(*size)
+        self._size = size
         node = card_maker.generate()
         if parent is None:
             self._cef_node = base.render2d.attachNewNode(node)
