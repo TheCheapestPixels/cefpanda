@@ -14,13 +14,12 @@ class App(ShowBase):
         self.ui = cefpanda.CEFPanda(
             transparent=False,
             size=[-0.75, 0.75, -0.75, 0.75],
-            #parent=base.aspect2d,
+            # parent=base.aspect2d,
         )
         self.ui.node().set_scale(0.9)
         self.ui.node().set_pos(0.05, 0.0, -0.1)
         self.ui.set_js_function('call_py', self.handler_js_to_py)
         self.ui.load_file('ui/main.html')
-        # self.ui.load_file('ui/mouse_pos.html')
 
     def handler_js_to_py(self, color):
         print("Python handler called with '{}'".format(color))
