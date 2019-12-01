@@ -241,9 +241,9 @@ class CEFPanda(DirectObject):
             self._shutdown_cef()
             return
 
-        left, right, down, up = self._size
+        left, right, bottom, top = self._size
         width = int(round(window.get_x_size() * (right - left) / 2.0))
-        height = int(round(window.get_y_size() * (up - down) / 2.0))
+        height = int(round(window.get_y_size() * (top - bottom) / 2.0))
 
         # We only want to resize if the window size actually changed.
         if self._cef_texture.get_x_size() != width or self._cef_texture.get_y_size() != height:
@@ -301,9 +301,9 @@ class CEFPanda(DirectObject):
             base.render2d,
             p3d.Vec3(mouse.get_x(), 0, mouse.get_y()),
         )
-        left, right, down, up = self._size
+        left, right, bottom, top = self._size
         posx = (pos.x - left) / (right - left) * self._cef_texture.get_x_size()
-        posy = (pos.z - down) / (up - down) * self._cef_texture.get_y_size()
+        posy = (pos.z - bottom) / (top - bottom) * self._cef_texture.get_y_size()
         posy = self._cef_texture.get_y_size() - posy
 
         return posx, posy
